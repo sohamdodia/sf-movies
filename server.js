@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const routes = require('./src/routes');
 const config = require('./config');
 const app = express();
-
+const port = process.env.PORT || config.const.apiPort;
 //Enable Cors
 app.use(cors());
 app.options('*', cors());
@@ -19,10 +19,10 @@ app.use('/', routes);
 app.use(express.static('public'))
 
 //Start Server
-app.listen(config.const.apiPort, (error) => {
+app.listen(port, (error) => {
 	if (error) {
 		console.log('error', error);
 	} else {
-		console.log(`Application is runnig on ${config.const.apiPort}`);
+		console.log(`Application is runnig on ${port}`);
 	}
 });
